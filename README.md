@@ -35,7 +35,4 @@ library(patchwork)
 
 Rendered output
 
-The rendered key for the code in this repository is [here](https://github.com/maisieann122-ctrl/intermediate-elective/blob/main/code/intermediate-elective-option-2.pdf)
-
-
 The rendered individual assignment 5 document is [here](https://github.com/maisieann122-ctrl/week-05_spring-2026_aquatic-inverts/blob/main/code/Individual-Assignment-05.pdf) 
