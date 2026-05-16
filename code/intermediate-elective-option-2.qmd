@@ -222,6 +222,11 @@ taxon_end <- taxon_abundance |>
 
 
 ```{r}
+#| label: plotting abundance
+#| fig-height: 6
+#| fig-width: 10
+#| out-width: 100%
+
 # selecting colours for ostracods and nematodes
 ostracod_gold <- "#F4A932"
 nematoda_blue <- "#6A80A0"
