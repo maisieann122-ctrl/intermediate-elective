@@ -274,5 +274,19 @@ ggplot(taxon_abundance,
 scale_x_continuous(expand = expansion(mult = c(0.02, 0.15)))
 ```
 
+# 4. Describe your process
 
+Your process of using someone else’s code to create a visualization
+- It was honestly extremely difficult trying to use someone else's code to make a visualisation.
+- At first, I tried copying and pasting their code and editing it referencing my dataset. 
+- That attempt did not work as I encountered many different errors. 
+- I then had to use their figure as inspiration and using different code chunks that we have encountered in class as well as new lines of code (for example, geom_vline, geom_text).
 
+Challenges you encountered as you made your visualization
+_ I'm not even sure if I have completed this elective how it was intended to. 
+- The packages used in the inspiration's code were not loading on my RStudio (with errors saying my packages were outdated)
+- When trying to sort the figure by year, it was also quite difficult as it was the wrong list type. 
+- After these errors, I decided to change the approach I was using.
+
+How your visualization differs from visualizations you made in class, for assignments, or for a previous elective?
+- My visualisation contains very similar components as the ones we have created from class. However, it is different in that it has an added dotted line showing where the abundance peaks. Additionally, the point for peak was also increased in size - which I don't believe we have done in class. I also don't think visualisations from class included a label and end-point value. 
