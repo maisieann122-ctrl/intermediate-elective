@@ -166,16 +166,20 @@ slice_sample(logsalinity2)
 # 1. Explain your inspiration
 
 Which visualization you chose for your inspiration?
-I chose Steven Ponce’s “Coal falls. Renewables rise.”
+- I chose Steven Ponce’s “Coal falls. Renewables rise.”
 
 Why it makes sense for your dataset of choice?
-It makes sense as it shows how the abundance of 2 different aquatic invertebrates change through time.
+- It makes sense as it shows how the abundance of 2 different aquatic invertebrates change through time.
 
 which variables from your dataset will be shown in your visualization, and what visual components they map onto (axes, shapes, colors, etc.)
 - x-axis will be the date (year)
 - y-axis will be the abundance (log transformed average abundance per liter)
-- I will use points and lines (line graph) to show how the 2 taxons increase or decrease in abundance over time. 
+- I will use points and lines (line graph) to show how the 2 taxons increase or decrease in abundance over time. I am choosing the taxon ostracoda and nematoda
 - I will also show when their abundance peaks
 _ I will use the same colours as the inspiration
 
+# 2. Plan your figure
 
+![](../plan-intermediate-elective-2.png)
+
+# 3. Code your figure
