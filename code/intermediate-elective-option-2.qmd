@@ -35,7 +35,6 @@ library(patchwork)
 # extra packages required for visualisation
 library(ggtext)
 library(showtext)
-library(glue) 
 ```
 
 ## Data
@@ -183,3 +182,97 @@ _ I will use the same colours as the inspiration
 ![](../plan-intermediate-elective-2.png)
 
 # 3. Code your figure
+
+```{r}
+taxon_abundance <- logsalinity2 |>
+  mutate(
+    date = ymd(date),
+    year = year(date)
+  ) |>
+  filter(
+    taxon %in% c("ostracod", "nematode"),
+    year >= 2020,
+    year <= 2024
+  ) |>
+  group_by(year, taxon) |>
+  summarise(
+    abundance = mean(log_ave_lit, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  mutate(
+    taxon = factor(taxon, levels = c("ostracod", "nematode"))
+  )
+```
+
+```{r}
+#| label: finding-peaks
+taxon_peaks <- taxon_abundance |>
+  group_by(taxon) |>
+  slice_max(abundance, n = 1, with_ties = FALSE) |>
+  ungroup()
+```
+
+```{r}
+#| label: finding-ends
+taxon_end <- taxon_abundance |>
+  group_by(taxon) |>
+  slice_max(year, n = 1, with_ties = FALSE) |>
+  ungroup()
+```
+
+
+```{r}
+# selecting colours for ostracods and nematodes
+ostracod_gold <- "#F4A932"
+nematoda_blue <- "#6A80A0"
+
+# plot figure using taxon_abundance dataset
+ggplot(taxon_abundance,
+       aes(x = year,
+           y = abundance,
+           color = taxon,
+           group = taxon)) +
+  # line to connect all points
+  geom_line(linewidth = 1) +
+  # adding point to figure
+  geom_point(size = 2.5) +
+  # increasing size of peak points
+ geom_point(data = taxon_peaks,
+             aes(x = year, y = abundance),
+             size = 4) +
+  # adding dotted line for peaks
+ geom_vline(data = taxon_peaks,
+             aes(xintercept = year,
+                 color = taxon),
+             linetype = "dotted",
+             linewidth = 1) +
+  # labelling the peaks
+  geom_text(data = taxon_peaks,
+            aes(label = paste0(taxon, "peak: ", year)),
+            vjust = -1,
+            size = 4,
+            show.legend = FALSE) +
+  # labelling the end points
+ geom_text(data = taxon_end,
+            aes(label = paste0(taxon, ": ", round(abundance, 2))),
+            hjust = -0.1,
+            size = 4,
+            show.legend = FALSE) +
+  # adding a different colour for each taxon
+  scale_color_manual(values = c(
+    "ostracod" = ostracod_gold,
+    "nematode" = nematoda_blue
+  )) +
+  # y-axis and x-axis labels and titling
+  labs(
+    title = "Ostracod and Nematode Abundance Over Time at NCOS",
+    x = "Year",
+    y = "Log-transformed average abundance per liter",
+    color = "Taxon"
+  ) +
+# expanding x-axis so all labels fit
+scale_x_continuous(expand = expansion(mult = c(0.02, 0.15)))
+```
+
+
+
